@@ -3,8 +3,9 @@ import json
 import os
 from dotenv import load_dotenv
 
-API_KEY = os.getenv('API_KEY')
+load_dotenv()
 
+API_KEY = os.getenv('API_KEY')
 
 def get_video_id_from_channel_info(playlist_id, max_result):
     url = 'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&playlistId={}&maxResults={}&key={}'.format(playlist_id, max_result, API_KEY)
