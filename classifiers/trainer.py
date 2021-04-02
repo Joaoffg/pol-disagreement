@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import statistics
+from tqdm.notebook import tqdm
 
 from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.metrics import accuracy_score
@@ -27,7 +28,6 @@ class Trainer():
   ):
 
     self.model = model
-    self.tokenizer = tokenizer
     self.train_dataset= train_dataset
     self.eval_dataset = eval_dataset
     self.loss_function = loss_function 
@@ -74,7 +74,7 @@ class Trainer():
     total_steps = len(self.train_dataloader)
     print('TOTAL STEPS:', total_steps)
 
-    optimizer = AdamW(model.parameters(),  lr=learning_rate)
+    optimizer = AdamW(self.model.parameters(),  lr=learning_rate)
     if use_scheduler:
       scheduler = get_linear_schedule_with_warmup(optimizer, total_steps, (epochs-1) * total_steps)
 
@@ -90,7 +90,7 @@ class Trainer():
         input_ids = dl['input_ids'].to(self.device)
         attention_mask = dl['attention_mask'].to(self.device)
         targets = dl['labels'].to(self.device)
-        outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+        outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
         y_true += targets.cpu().numpy().tolist()
         y_pred += nn.Sigmoid()(outputs.logits).round().squeeze().cpu().tolist()
         loss = self.loss_function(outputs.logits, targets.unsqueeze(1))
@@ -105,7 +105,7 @@ class Trainer():
           print("TRAINING LOSS: {}".format(statistics.mean(losses)),
                 "TRAIN ACCURACY: {}".format(accuracy_score(y_true,y_pred)))
           eval_y_true, eval_y_pred = self.eval_op()
-          model.train()
+          self.model.train()
 
       self.metrics["Training"]["Epoch {}".format(epoch)] = self.compute_metrics(y_true, y_pred)
       self.metrics["Eval"]["Epoch {}".format(epoch)] = self.compute_metrics(eval_y_true, eval_y_pred)
