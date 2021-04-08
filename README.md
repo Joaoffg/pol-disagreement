@@ -26,3 +26,4 @@ Contains scrapers for social media content to be classified using the classifier
 - Assess and improve performance of political content classifier
 - Develop ideology classifier for left-right content
 - Develop facebook post/comment scraper
+- Collect list of subreddits related to main subreddits indicated in platform_categories.csv
