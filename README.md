@@ -2,7 +2,7 @@
 Political disagreement in non-political spaces
 
 
-Classifiers folder
+**Classifiers folder**
 
 Contains content classifiers and training data relevant for the goals of the project, namely:
 
