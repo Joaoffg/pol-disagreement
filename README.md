@@ -11,3 +11,18 @@ Contains content classifiers and training data relevant for the goals of the pro
 
 These classifiers should generalize for Reddit, Facebook and Youtube text data (comments, posts, video descriptions).
 
+
+**Scrapers folder**
+
+Contains scrapers for social media content to be classified using the classifiers. In its current state, it contains the following:
+
+- A Youtube comment scraper that scrapes comments and video data from a youtube channel playlist_id.
+
+
+
+
+**To do:**
+- Improve performane of disagreement classifier;
+- Assess and improve performance of political content classifier
+- Develop ideology classifier for left-right content
+- Develop facebook post/comment scraper
