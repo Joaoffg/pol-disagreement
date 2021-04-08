@@ -8,6 +8,7 @@ Contains content classifiers and training data relevant for the goals of the pro
 
  - A disagreement classifier that determines if a text contains expressions of disagreement;
  - A political content classifier that determines if a text contains political content.
+ - A political classifier based on titles: https://github.com/ercexpo/political_classification
 
 These classifiers should generalize for Reddit, Facebook and Youtube text data (comments, posts, video descriptions).
 
