@@ -69,7 +69,7 @@ def parse_comment_thread(comment_thread):
 
 
 def save_comment_threads_from_channel_uploads(channel_name, num_videos):
-    video_ids = get_video_id_from_channel_info('PLt_lOWx8jR_NwXafqGj_8_YysvoAv2QbM', num_videos)
+    video_ids = get_video_id_from_channel_info(playlist_id, num_videos)
     parent_dir = './'
     path = os.path.join(parent_dir, channel_name)
 
